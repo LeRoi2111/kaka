@@ -1,0 +1,67 @@
+body {
+    background-color: #f8f9fa;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #212529;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-wrapper {
+    flex: 1;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+}
+
+.header-custom {
+    background-color: #0d6efd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.header-custom .navbar-brand {
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.header-custom .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.header-custom .nav-link.active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 0.375rem;
+}
+
+.footer-custom {
+    background-color: #ffffff;
+    border-top: 1px solid #dee2e6;
+    padding: 1.25rem 0;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.card-custom {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    background-color: #ffffff;
+}
+
+.btn-primary-custom {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #ffffff;
+}
+
+.text-secondary-custom {
+    color: #6c757d;
+}
+
+.alert {
+    border-radius: 0.375rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}

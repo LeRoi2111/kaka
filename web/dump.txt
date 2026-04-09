@@ -1,0 +1,100 @@
+CREATE DATABASE IF NOT EXISTS `base` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `base`;
+
+-- Дамп структуры для таблица infosecurity.admin
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `login` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT (now()),
+  `updated_at` timestamp NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `email` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.categories
+CREATE TABLE IF NOT EXISTS `categories` (
+  `category_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.clients
+CREATE TABLE IF NOT EXISTS `clients` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `organization` varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `password_hash` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT (now()),
+  `updated_at` timestamp NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+  `phone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `email` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.faq
+CREATE TABLE IF NOT EXISTS `faq` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `question` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `answer` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `is_active` enum('0','1') COLLATE utf8mb4_general_ci NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.feedback
+CREATE TABLE IF NOT EXISTS `feedback` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(250) COLLATE utf8mb4_general_ci NOT NULL DEFAULT '0',
+  `email` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `phone` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `question` text COLLATE utf8mb4_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.info
+CREATE TABLE IF NOT EXISTS `info` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `phone1` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `phone2` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `address` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `vk` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `tg` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `wa` varchar(250) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `about` text COLLATE utf8mb4_general_ci,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Экспортируемые данные не выделены.
+
+-- Дамп структуры для таблица infosecurity.services
+CREATE TABLE IF NOT EXISTS `services` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) COLLATE utf8mb4_general_ci NOT NULL,
+  `description` text COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` int unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_services_categories` (`category_id`),
+  CONSTRAINT `FK_services_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`category_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Экспортируемые данные не выделены.
+
+/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
